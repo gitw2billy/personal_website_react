@@ -1,5 +1,9 @@
 .App {
-  text-align: center;
+  /* text-align: center; */
+}
+
+#root {
+  min-height: 100vh;
 }
 
 .App-logo {
@@ -26,7 +30,7 @@
 
 .App-link {
   color: #61dafb;
-}
+}d
 
 @keyframes App-logo-spin {
   from {
@@ -35,4 +39,17 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.navStyle {
+  position: fixed;
+  left: 0;
+  margin-top: -1rem;
+  /* bottom: 0; */
+  z-index: 10;
+  width: 250px !important;
+}
+
+.navContainer {
+  height: 101vh;
 }
