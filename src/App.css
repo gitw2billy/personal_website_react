@@ -4,7 +4,9 @@
 
 #root {
   min-height: 100vh;
+  height: 100vh;
 }
+
 
 .App-logo {
   height: 40vmin;
@@ -50,6 +52,28 @@
   width: 250px !important;
 }
 
-.navContainer {
-  height: 101vh;
+.show-fake-browser {
+  /* border:1px solid #e5e5ea; */
+  box-shadow: 0 0.1em 0.5em 0 rgba(0,0,0,.28);
+  border-radius: 4px;
+  background: #f7f7fa;
+  height: 100%;
+}
+
+.rs-container {
+  height: 100%;
+}
+
+.rs-sidebar {
+  height: 100% !important;
+}
+
+.rs-sidenav {
+  height: 100%;
+}
+
+.sidebar-page .rs-sidebar {
+  height: 700px;
+  -webkit-box-shadow: 0 4px 4px rgba(0,0,0,.12), 0 0 10px rgba(0,0,0,.06);
+  box-shadow: 0 4px 4px rgba(0,0,0,.12), 0 0 10px rgba(0,0,0,.06);
 }

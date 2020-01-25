@@ -73,7 +73,7 @@ export default class App extends React.Component {
         <Container>
           <Sidebar
             style={{ display: 'flex', flexDirection: 'column' }}
-            width={expand ? 260 : 56}
+            width={expand ? 260 : 61}
             collapsible
           >
             <Sidenav.Header>
@@ -82,7 +82,7 @@ export default class App extends React.Component {
 									//<Icon icon="logo-analytics" size="lg" style={{ verticalAlign: 0 }} />
 								}
 								<Avatar circle src={require("./images/drawn_icon.jpg")} style={{ verticalAlign: 0 }} size={"lg"} />
-                <span style={{ marginLeft: 12, position: "fixed", top: "2%", display: expand ? '' : 'none' }}> WillyBDev</span>
+                <span style={{ marginLeft: 12, position: "fixed", top: "1.5%", display: expand ? '' : 'none' }}> WillyBDev</span>
               </div>
             </Sidenav.Header>
             <Sidenav
@@ -108,9 +108,6 @@ export default class App extends React.Component {
 									<Dropdown.Item eventKey="4-1">Gaming</Dropdown.Item>
 									<Dropdown.Item eventKey="4-2">Modeling</Dropdown.Item>
 								</Dropdown>
-								<div style={{ bottom: '0', position: 'fixed' }}>
-									<h3>*Instert Github*</h3>
-								</div>
 							</Nav>
               </Sidenav.Body>
             </Sidenav>
