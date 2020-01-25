@@ -1,64 +1,137 @@
-import React, { Component } from 'react';
-import './App.css';
+import React from 'react';
+import { Header, Sidenav, Nav, Dropdown, Icon, Avatar, Container, Sidebar, Content, Navbar } from 'rsuite';
+import { ComingSoon } from './views';
 
-import 'rsuite/dist/styles/rsuite-default.css';
-import { Sidenav, Nav, Dropdown, Icon, Avatar } from 'rsuite';
+ import {
+ 	BrowserRouter as Router,
+ 	Switch,
+ 	Route,
+ 	Link
+   } from "react-router-dom";
 
-const styles = {
-  width: 150,
-  display: 'inline-table',
-	marginRight: 10,
+const headerStyles = {
+  fontSize: 16,
+  height: "3.8em",
+  background: '#34c3ff',
+  color: ' #fff',
+  whiteSpace: 'nowrap',
+  overflow: 'hidden'
 };
 
-const SidenavInstance = ({ ...props }) => {
-	return (
-		<div style={styles}>
-			<Sidenav style={{ paddingTop: ".5rem" }} className="navStyle" {...props} defaultOpenKeys={['2']}>
-				<Sidenav.Header style={{ marginLeft: "1rem" }}>
-					<Avatar circle src={require("./images/drawn_icon.jpg")} size={"lg"} />
-					<h3>WillyBDev</h3>
-				</Sidenav.Header>
-				<Sidenav.Body>
-					<Nav className="navContainer">
-						<Nav.Item eventKey="1" active icon={<Icon icon="dashboard" />}>
-							Dashboard
-						</Nav.Item>
-						<Dropdown eventKey="2" title="Development" icon={<Icon icon="laptop" />}>
-						<Dropdown.Item eventKey="2-1">Applications</Dropdown.Item>
-							<Dropdown.Item eventKey="2-2">Devices</Dropdown.Item>
-							<Dropdown.Item eventKey="2-3">Resume</Dropdown.Item>
-						</Dropdown>
-						<Dropdown eventKey="3" title="Photography" icon={<Icon icon="camera-retro" />}>
-							<Dropdown.Item eventKey="3-1">Gallary</Dropdown.Item>
-							<Dropdown.Item eventKey="3-2">Current Gear</Dropdown.Item>
-						</Dropdown>
-						<Dropdown eventKey="4" title="Vices" icon={<Icon icon="gamepad" />}>
-							<Dropdown.Item eventKey="4-1">Gaming</Dropdown.Item>
-							<Dropdown.Item eventKey="4-2">Modeling</Dropdown.Item>
-							<Dropdown.Item eventKey="4-3">Misc.</Dropdown.Item>
-						</Dropdown>
-						<div style={{ bottom: '0', position: 'fixed' }}>
-							<h3>*Instert Github*</h3>
-						</div>
-					</Nav>
-				</Sidenav.Body>
-			</Sidenav>
-		</div>
-	);
+const iconStyles = {
+  width: 56,
+  height: 56,
+  lineHeight: '56px',
+  textAlign: 'center'
+};
+
+const NavToggle = ({ expand, onChange }) => {
+  return (
+    <Navbar appearance="subtle" className="nav-toggle">
+      <Navbar.Body>
+        <Nav>
+          <Dropdown
+            placement="topStart"
+            trigger="click"
+            renderTitle={children => {
+              return <Icon style={iconStyles} icon="cog" />;
+            }}
+          >
+            <Dropdown.Item>Help</Dropdown.Item>
+            <Dropdown.Item>Settings</Dropdown.Item>
+            <Dropdown.Item>Sign out</Dropdown.Item>
+          </Dropdown>
+        </Nav>
+
+        <Nav pullRight>
+          <Nav.Item onClick={onChange} style={{ width: 56, textAlign: 'center' }}>
+            <Icon icon={expand ? 'angle-left' : 'angle-right'} />
+          </Nav.Item>
+        </Nav>
+      </Navbar.Body>
+    </Navbar>
+  );
+};
+
+export default class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      expand: true
+    };
+    this.handleToggle = this.handleToggle.bind(this);
+  }
+  handleToggle() {
+    this.setState({
+      expand: !this.state.expand
+    });
+  }
+  render() {
+    const { expand } = this.state;
+    return (
+      <div className="show-fake-browser sidebar-page">
+        <Container>
+          <Sidebar
+            style={{ display: 'flex', flexDirection: 'column' }}
+            width={expand ? 260 : 56}
+            collapsible
+          >
+            <Sidenav.Header>
+              <div style={headerStyles}>
+								{
+									//<Icon icon="logo-analytics" size="lg" style={{ verticalAlign: 0 }} />
+								}
+								<Avatar circle src={require("./images/drawn_icon.jpg")} style={{ verticalAlign: 0 }} size={"lg"} />
+                <span style={{ marginLeft: 12, position: "fixed", top: "2%", display: expand ? '' : 'none' }}> WillyBDev</span>
+              </div>
+            </Sidenav.Header>
+            <Sidenav
+              expanded={expand}
+              defaultOpenKeys={['1']}
+              appearance="subtle"
+            >
+              <Sidenav.Body>
+							<Nav className="navContainer">
+								<Nav.Item eventKey="1" active icon={<Icon icon="dashboard" />}>
+									Dashboard
+								</Nav.Item>
+								<Dropdown eventKey="2" title="Development" icon={<Icon icon="laptop" />}>
+								<Dropdown.Item eventKey="2-1">Applications</Dropdown.Item>
+									<Dropdown.Item eventKey="2-2">Devices</Dropdown.Item>
+									<Dropdown.Item eventKey="2-3">Resume</Dropdown.Item>
+																</Dropdown>
+								<Dropdown eventKey="3" title="Photography" icon={<Icon icon="camera-retro" />}>
+									<Dropdown.Item eventKey="3-1">Gallary</Dropdown.Item>
+									<Dropdown.Item eventKey="3-2">Current Gear</Dropdown.Item>
+								</Dropdown>
+								<Dropdown eventKey="4" title="Vices" icon={<Icon icon="gamepad" />}>
+									<Dropdown.Item eventKey="4-1">Gaming</Dropdown.Item>
+									<Dropdown.Item eventKey="4-2">Modeling</Dropdown.Item>
+								</Dropdown>
+								<div style={{ bottom: '0', position: 'fixed' }}>
+									<h3>*Instert Github*</h3>
+								</div>
+							</Nav>
+              </Sidenav.Body>
+            </Sidenav>
+            <NavToggle expand={expand} onChange={this.handleToggle} />
+          </Sidebar>
+          <Container>
+							<Router>
+								<Switch>
+									<Route exact path="/">
+										<Header>
+											<h2>Page Title</h2>
+										</Header>
+										<Content>
+											<ComingSoon />
+										</Content>
+									</Route>
+								</Switch>
+							</Router>
+          </Container>
+        </Container>
+      </div>
+    );
+  }
 }
-
-class App extends Component {
-	
-
-	render() {
-		return (
-			<div style={{ height: "100vh" }}>
-				<div style={{ width: 150 }}>
-					<SidenavInstance appearance="default" />
-				</div>
-			</div>
-		);
-	}
-}
-
-export default App;
